@@ -1,4 +1,4 @@
-import { View } from '@nativescript/core';
+import { Page, ShowModalOptions, View } from '@nativescript/core';
 import { NavigationTransition } from '@nativescript/core/ui/frame/frame-interfaces';
 export interface RouterEntry {
     path: string;
@@ -15,6 +15,17 @@ export interface RouterEntry {
     create?: () => View;
     unuthenticated?: () => void;
 }
+export interface OpenModalOptions extends ShowModalOptions {
+    frameId?: string;
+    path: string;
+}
+declare global {
+    module NodeJS {
+        interface Global {
+            router: Router;
+        }
+    }
+}
 export interface Route {
     path: string;
     modulePath: string;
@@ -27,7 +38,10 @@ export declare class Router {
     private unuthenticated;
     constructor(routes: Array<Route>, unuthenticatedCallback: () => void);
     navigate(options: RouterEntry): boolean;
+    goBack(frameId?: string): boolean;
+    openModal(options: OpenModalOptions): boolean;
+    closeModalPage(page: Page): boolean;
     private getModulePathByPath;
-    set routes(r: Array<Route>);
-    get routes(): Array<Route>;
+    private set routes(value);
+    private get routes();
 }
