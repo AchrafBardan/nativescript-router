@@ -1,0 +1,28 @@
+{
+  "name": "nativescript-router",
+  "version": "1.0.0",
+  "description": "Routing made easy in nativescript",
+  "main": "router",
+  "types": "index.d.ts",
+  "nativescript": {
+    "platforms": {
+      "android": "6.0.0",
+      "ios": "6.0.1"
+    }
+  },
+  "scripts": {
+    "tsc": "npm i && tsc",
+    "build": "npm run tsc",
+    "tslint": "cd .. && tslint \"**/*.ts\" --config tslint.json --exclude \"**/node_modules/**\"",
+    "ci.tslint": "npm i && tslint '**/*.ts' --config '../tslint.json' --exclude '**/node_modules/**' --exclude '**/platforms/**'"
+  },
+  "devDependencies": {
+    "@nativescript/core": "^8.0.0",
+    "@nativescript/types": "^8.0.0",
+    "@nativescript/webpack": "^4.1.0",
+    "ts-patch": "~1.3.0",
+    "tslint": "^6.0.0",
+    "typescript": "^4.0.0"
+  },
+  "author": "Achraf Bardan"
+}
