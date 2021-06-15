@@ -1,6 +1,6 @@
 {
   "name": "nativescript-router",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Routing made easy in nativescript",
   "main": "router",
   "types": "index.d.ts",
