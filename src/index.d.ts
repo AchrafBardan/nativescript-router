@@ -1,5 +1,1 @@
-import { Common } from './router.common';
-
-export declare class Router extends Common {
-    
-}
+export * from './router.common';

@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "target": "es5",
-        "module": "commonjs",
+        "module": "commonJs",
         "declaration": true,
         "removeComments": true,
         "noLib": false,
@@ -11,12 +11,12 @@
         "lib": ["es6", "dom"],
         "sourceMap": true,
         "pretty": true,
+        "noImplicitReturns": false,
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
         "noEmitHelpers": true,
         "noEmitOnError": false,
         "noImplicitAny": false,
-        "noImplicitReturns": true,
         "noImplicitUseStrict": false,
         "noFallthroughCasesInSwitch": true
     },
