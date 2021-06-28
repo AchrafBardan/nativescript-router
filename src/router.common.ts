@@ -1,5 +1,7 @@
 import { Frame, Page, ShowModalOptions, View } from '@nativescript/core';
 import { NavigationEntry, NavigationTransition } from '@nativescript/core/ui/frame/frame-interfaces';
+
+import * as events from 'events'
 export interface RouterEntry {
     path: string;
     frame: string;
@@ -40,22 +42,30 @@ export class Common {
 
 }
 
-export class Router {
+export declare interface Router {
+    on(event: 'navigating', listener: (name: RouterEntry) => void): this;
+}
+
+export class Router extends events.EventEmitter{
     private _routes: Array<Route>;
     private unuthenticated: () => void;
 
     constructor (routes: Array<Route>, unuthenticatedCallback: () => void) {
+      super();
       this.routes = routes;
       this.unuthenticated = unuthenticatedCallback;
     }
 
     navigate (options: RouterEntry) : boolean {
       // check if frame exists
+      this.emit('navigating',options);
       const frame = Frame.getFrameById(options.frame);
       if (!frame) {
         console.error('Frame not found by id');
         return false;
       }
+
+      
 
       // get module path
       this.getModulePathByPath(options.path).then(path => {

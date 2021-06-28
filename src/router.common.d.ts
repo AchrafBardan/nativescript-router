@@ -1,5 +1,7 @@
+/// <reference types="node" />
 import { Page, ShowModalOptions, View } from '@nativescript/core';
 import { NavigationTransition } from '@nativescript/core/ui/frame/frame-interfaces';
+import * as events from 'events';
 export interface RouterEntry {
     path: string;
     frame: string;
@@ -33,7 +35,10 @@ export interface Route {
 }
 export declare class Common {
 }
-export declare class Router {
+export declare interface Router {
+    on(event: 'navigating', listener: (name: RouterEntry) => void): this;
+}
+export declare class Router extends events.EventEmitter {
     private _routes;
     private unuthenticated;
     constructor(routes: Array<Route>, unuthenticatedCallback: () => void);

@@ -2,19 +2,24 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Router = exports.Common = void 0;
 var core_1 = require("@nativescript/core");
+var events = require("events");
 var Common = (function () {
     function Common() {
     }
     return Common;
 }());
 exports.Common = Common;
-var Router = (function () {
+var Router = (function (_super) {
+    __extends(Router, _super);
     function Router(routes, unuthenticatedCallback) {
-        this.routes = routes;
-        this.unuthenticated = unuthenticatedCallback;
+        var _this = _super.call(this) || this;
+        _this.routes = routes;
+        _this.unuthenticated = unuthenticatedCallback;
+        return _this;
     }
     Router.prototype.navigate = function (options) {
         var _this = this;
+        this.emit('navigating', options);
         var frame = core_1.Frame.getFrameById(options.frame);
         if (!frame) {
             console.error('Frame not found by id');
@@ -95,6 +100,6 @@ var Router = (function () {
         configurable: true
     });
     return Router;
-}());
+}(events.EventEmitter));
 exports.Router = Router;
 //# sourceMappingURL=router.common.js.map
