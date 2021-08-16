@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { Page, ShowModalOptions, View } from '@nativescript/core';
+import { ShowModalOptions, View } from '@nativescript/core';
 import { NavigationTransition } from '@nativescript/core/ui/frame/frame-interfaces';
 import * as events from 'events';
 export interface RouterEntry {
@@ -44,8 +44,8 @@ export declare class Router extends events.EventEmitter {
     constructor(routes: Array<Route>, unuthenticatedCallback: () => void);
     navigate(options: RouterEntry): boolean;
     goBack(frameId?: string): boolean;
-    openModal(options: OpenModalOptions): boolean;
-    closeModalPage(page: Page): boolean;
+    openModal(options: OpenModalOptions): void;
+    closeModalPage(): boolean;
     private getModulePathByPath;
     private set routes(value);
     private get routes();
