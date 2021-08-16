@@ -58,20 +58,14 @@ var Router = (function (_super) {
         return true;
     };
     Router.prototype.openModal = function (options) {
-        var frame = core_1.Frame.getFrameById(options.frameId || 'default');
-        if (!frame) {
-            console.error('Frame not found by id');
-            return false;
-        }
         this.getModulePathByPath(options.path).then(function (path) {
-            frame.showModal(path, options);
-            return true;
+            core_1.Frame.topmost().showModal(path, options);
         }).catch(function () {
-            return false;
+            console.error('MODULE_NOT_FOUND');
         });
     };
-    Router.prototype.closeModalPage = function (page) {
-        page.closeModal();
+    Router.prototype.closeModalPage = function () {
+        core_1.Frame.topmost().modal.closeModal();
         return true;
     };
     Router.prototype.getModulePathByPath = function (path) {

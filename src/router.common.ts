@@ -114,25 +114,23 @@ export class Router extends events.EventEmitter{
       return true;
     }
 
-    public openModal (options: OpenModalOptions) : boolean {
-      // check if frame exists
-      const frame = Frame.getFrameById(options.frameId || 'default');
-      if (!frame) {
-        console.error('Frame not found by id');
-        return false;
-      }
+    public openModal (options: OpenModalOptions) {
+    //   // check if frame exists
+    //   const frame = Frame.getFrameById(options.frameId || 'default');
+    //   if (!frame) {
+    //     console.error('Frame not found by id');
+    //     return false;
+    //   }
 
       this.getModulePathByPath(options.path).then(path => {
-        frame.showModal(path, options);
-
-        return true;
+        Frame.topmost().showModal(path, options);
       }).catch(() => {
-        return false;
+        console.error('MODULE_NOT_FOUND');
       });
     }
 
-    public closeModalPage (page: Page) : boolean {
-      page.closeModal();
+    public closeModalPage () : boolean {
+      Frame.topmost().modal.closeModal();
       return true;
     }
 

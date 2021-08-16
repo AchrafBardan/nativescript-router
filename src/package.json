@@ -1,6 +1,6 @@
 {
   "name": "nativescript-router",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Routing made easy in nativescript",
   "main": "router.common.js",
   "types": "index.d.ts",
@@ -19,6 +19,7 @@
   "scripts": {
     "tsc": "tsc -skipLibCheck",
     "build": "npm i && npm run tsc",
+    "prepare-demo": "npm run build && cd ../demo && npm i ../src && ns debug ios",
     "postclone": "npm i && cd ../demo && npm i && cd ../src && npm run plugin.link"
   },
   "repository": {
